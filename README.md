@@ -2,4 +2,6 @@
 
 :zzz: Work in progress :zzz:
 
-Personal blog of Sue Wallace: www.sue-wallace-blog.com
+www.sue-wallace-blog.com
+
+Personal blog of Sue Wallace
