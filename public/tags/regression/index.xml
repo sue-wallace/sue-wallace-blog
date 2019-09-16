@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>regression on Hugo tranquilpeak theme</title>
+    <link>/tags/regression/</link>
+    <description>Recent content in regression on Hugo tranquilpeak theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Jul 2019 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/regression/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sue Wallace</title>
+      <link>/2019/07/sue-wallace/</link>
+      <pubDate>Sun, 28 Jul 2019 21:13:14 -0500</pubDate>
+      
+      <guid>/2019/07/sue-wallace/</guid>
+      <description>Senior Statistician with 5 years of experience working as a statistician and analyst in the charity and public sector.
+Working across three governmental departments I have deployed my analytical and data science skills in fast paced environments to produce statistical publications, drive reproducibility in analytics, provide projections and insight to policy colleagues, and provide training in the use of R via a series of self - developed workshops.</description>
+    </item>
+    
+  </channel>
+</rss>

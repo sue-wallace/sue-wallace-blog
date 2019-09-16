@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hexo theme on Hugo tranquilpeak theme</title>
+    <link>/tags/hexo-theme/</link>
+    <description>Recent content in hexo theme on Hugo tranquilpeak theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/hexo-theme/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fatal Force with Cross Talk</title>
+      <link>/2019/07/fatal-force-with-cross-talk/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/07/fatal-force-with-cross-talk/</guid>
+      <description>&lt;p&gt;Using cross talk and flexdashboard to create an interactive application&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

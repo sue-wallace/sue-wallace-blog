@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.56.0 with theme Tranquilpeak 0.4.6-BETA">
+<meta name="author" content="Sue Wallace">
+<meta name="keywords" content="crosstalk, flexdashboard, DT, leaflet, Tidyverse">
+<meta name="description" content="Using crosstalk and html widgets such as flexdashboard, leaflet and DT to create an interactive application">
+
+
+<meta property="og:description" content="Using crosstalk and html widgets such as flexdashboard, leaflet and DT to create an interactive application">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fatal Force with Cross Talk">
+<meta name="twitter:title" content="Fatal Force with Cross Talk">
+<meta property="og:url" content="/2019/07/fatal-force-with-cross-talk/">
+<meta property="twitter:url" content="/2019/07/fatal-force-with-cross-talk/">
+<meta property="og:site_name" content="Hugo tranquilpeak theme">
+<meta property="og:description" content="Using crosstalk and html widgets such as flexdashboard, leaflet and DT to create an interactive application">
+<meta name="twitter:description" content="Using crosstalk and html widgets such as flexdashboard, leaflet and DT to create an interactive application">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2019-07-28T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-07-28T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="crosstalk">
+    
+      <meta property="article:section" content="flexdashboard">
+    
+  
+  
+    
+      <meta property="article:tag" content="crosstalk">
+    
+      <meta property="article:tag" content="flexdashboard">
+    
+      <meta property="article:tag" content="leaflet">
+    
+      <meta property="article:tag" content="shiny">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="/img/fatal-force.jpg">
+  <meta property="twitter:image" content="/img/fatal-force.jpg">
+
+
+  <meta property="og:image" content="/img/blue.jpg">
+  <meta property="twitter:image" content="/img/blue.jpg">
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/e652bbe868ed1c42c764ca8a7b07ce1e?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/e652bbe868ed1c42c764ca8a7b07ce1e?s=640">
+
+
+    <title>Fatal Force with Cross Talk</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/2019/07/fatal-force-with-cross-talk/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Hugo tranquilpeak theme</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/e652bbe868ed1c42c764ca8a7b07ce1e?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/e652bbe868ed1c42c764ca8a7b07ce1e?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Sue Wallace</h4>
+        
+          <h5 class="sidebar-profile-bio">Senior Statistician|Data Science Enthusiast|Project Manager</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/sue-wallace">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/img/blue.jpg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      Fatal Force with Cross Talk
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-07-28T00:00:00Z">
+        
+  July 28, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/crosstalk">crosstalk</a>, 
+    
+      <a class="category-link" href="/categories/flexdashboard">flexdashboard</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Using crosstalk and html widgets such as flexdashboard, leaflet and DT to create an interactive application</p>
+
+<p><img src="/img/fatal-force.jpg" alt="Fatal Force" /></p>
+
+<p>Crosstalk lets you use R Markdown to utilise multiple html widgets to develop an <a href="https://sue-wallace.github.io/fatal-force-with-crosstalk/">interactive application</a>. Unlike Shiny you don&rsquo;t need a server to host the application, and personally I find it a bit easier to use than Shiny. In this example I&rsquo;m going to use data collated by the Washington Post which details fatal police shootings in the US from 2015 to 2018.</p>
+
+<p>If you&rsquo;re planning on using this blog to understand how crosstalk works I would recommend cloning the project from github and following through what&rsquo;s written in this guidence by running the code yourself in R.</p>
+
+<p>Otherwise this blog will give you some more general information on how crosstalk works!</p>
+
+<h1 id="table-of-contents">Table of Contents</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#fatal-force">Fatal Force</a>
+<ul>
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#what-s-fatal-force">What&rsquo;s &lsquo;fatal force&rsquo;</a></li>
+<li><a href="#tidy-the-data">Tidy the data</a></li>
+<li><a href="#using-crosstalk">Using Crosstalk</a></li>
+</ul></li>
+</ul>
+</nav> 
+
+<h1 id="fatal-force">Fatal Force</h1>
+
+<p><a href="https://sue-wallace.github.io/fatal-force-with-crosstalk/"><img src="/img/fatal-force.jpg" alt="Fatal Force" /></a></p>
+
+<h2 id="getting-started">Getting started</h2>
+
+<p><a href="https://rstudio.github.io/crosstalk/">Crosstalk</a> developed by <a href="https://twitter.com/jcheng?lang=en">Joe Cheng</a> extends html widgets with interactivity using sliders, radio buttons and filters.</p>
+
+<p>To get started you can create a new R project and install the github repo by typing the following into the command line:</p>
+
+<pre><code>git clone https://github.com/mrmoleje/fatal-force-with-crosstalk
+</code></pre>
+
+<p>You&rsquo;ll also need the following libaries:</p>
+
+<pre><code>dplyr, leaflet, DT, crosstalk, RColorBrewer , readr, ggplot2
+</code></pre>
+
+<h2 id="what-s-fatal-force">What&rsquo;s &lsquo;fatal force&rsquo;</h2>
+
+<p>Police officers in the United States shoot and kill hundreds of people every year, far more than in other developed countries such as the UK, Germany and South Korea.</p>
+
+<p>Black people are disproportionately affected by police shootings, with black people making up 23.1% of the proportion killed.</p>
+
+<p>Between 2015 and 2017 nearly 3,000 people were shot and killed by police, and in 2018 so far 707 people have been killed.</p>
+
+<p>Nearly 7% of the people shot and killed by police in 2017 were unarmed. Currently in 2018 this figure stands at 5.8%.</p>
+
+<p>The data used here is taken from the Washington Post: Fatal Force website which details police shootings in the US from 2015-2018. You would need a subscription to look at the Washinton Post website but the data for the project is also available on <a href="https://www.kaggle.com/washingtonpost/police-shootings">Kaggle</a>.</p>
+
+<h2 id="tidy-the-data">Tidy the data</h2>
+
+<p>If you&rsquo;ve cloned the github repo as per the instructions above you&rsquo;ll see the data in csv format in the &lsquo;Data&rsquo; folder.</p>
+
+<p>You&rsquo;ll notice that the data there is quite messy. There are also some joins that need to be made before proceeding. I&rsquo;m going to use Tidyverse principles to clean the data and join it all into one data table.</p>
+
+<p>If you&rsquo;re not interested in how the data has been cleaned you might want to skip this step. To do this you can go ahead and use the <code>killing.csv</code> which is saved in the &lsquo;Data&rsquo; folder and skip to the <a href="#usingcrosstalk">Using Crosstalk</a> section of the blog.</p>
+
+<p>First let&rsquo;s install the libraries we&rsquo;ll use to tidy the data.</p>
+
+<pre><code>library(dplyr) #data manipulation
+library(readr) #read in and read out data
+</code></pre>
+
+<p>Now we can load the data sets that we want to tidy.</p>
+
+<pre><code>killing &lt;- read_csv(&quot;Data/fatal-police-shootings-data.csv&quot;) #From Washinton Post
+
+us_cities &lt;- read_csv(&quot;Data/us_cities.csv&quot;)
+
+states &lt;- read_csv(&quot;Data/state_code.csv&quot;)
+</code></pre>
+
+<p>Next we&rsquo;ll change the &lsquo;Year&rsquo; varaible so that it shows only the year of the incident, rather than the whole date.</p>
+
+<pre><code>killing %&gt;%
+  mutate(Year=format(as.Date(killing$date, format=&quot;%d/%m/%Y&quot;),&quot;%Y&quot;)) -&gt; killing
+</code></pre>
+
+<p>Next we need to join the data which details the deaths with some information on states. At the same time we can rename some of the variables so that they look more user friendly in the application.</p>
+
+<pre><code>dplyr::left_join(x = killing, 
+                 y = states, 
+                 by = &quot;state&quot;) %&gt;%
+  dplyr::select(name, date, manner_of_death, armed_1, age, gender, race, city,
+                signs_of_mental_illness, Year, state_name, flee, body_camera) %&gt;% 
+  dplyr::rename(Name = name, Date = date, `Manner of Death` = manner_of_death,
+                Age = age, Gender = gender, Race = race, State = state_name, 
+                City = city, `Signs of mental illness` = signs_of_mental_illness,
+                Armed = armed_1) -&gt; killing
+</code></pre>
+
+<p>We also need to join some data on cities with the states data.</p>
+
+<pre><code>us_cities %&gt;%
+  dplyr::select(city, state_id, lat, lng) %&gt;%
+  dplyr::rename(City = city, state = state_id) -&gt; us_cities
+
+us_cities %&gt;% 
+  dplyr::left_join(
+    x = us_cities,
+    y = states,
+    by =  &quot;state&quot;
+  ) -&gt; us_cities
+</code></pre>
+
+<p>Next we need to rename some of the values within the data. Again the purpose of this is so that the values are easy to understand in the application.</p>
+
+<pre><code>killing$Gender[killing$Gender == &quot;M&quot;] &lt;- &quot;Male&quot;
+killing$Gender[killing$Gender == &quot;F&quot;] &lt;- &quot;Female&quot;
+killing$Race[killing$Race == &quot;A&quot;] &lt;- &quot;Asian&quot;
+killing$Race[killing$Race == &quot;B&quot;] &lt;- &quot;Black&quot;
+killing$Race[killing$Race == &quot;H&quot;] &lt;- &quot;Hispanic&quot;
+killing$Race[killing$Race == &quot;W&quot;] &lt;- &quot;White&quot;
+killing$Race[killing$Race == &quot;O&quot;] &lt;- &quot;Other&quot;
+killing$Race[killing$Race == &quot;NA&quot;] &lt;- &quot;Unknown&quot;
+killing$Race[killing$Race == &quot;N&quot;] &lt;- &quot;First Nations&quot;
+killing$Race[is.na(killing$Race)] &lt;- &quot;Unknown&quot;
+killing$`Manner of Death`[killing$`Manner of Death` == &quot;shot&quot;] &lt;- &quot;Shot&quot;
+killing$`Manner of Death`[killing$`Manner of Death` == &quot;shot and Tasered&quot;] &lt;- &quot;Shot and tasered&quot;
+killing$body_camera[killing$body_camera == &quot;FALSE&quot;] &lt;- &quot;No&quot;
+killing$body_camera[killing$body_camera == &quot;TRUE&quot;] &lt;- &quot;Yes&quot;
+killing$`Signs of mental illness`[killing$`Signs of mental illness` == &quot;FALSE&quot;] &lt;- &quot;No&quot;
+killing$`Signs of mental illness`[killing$`Signs of mental illness` == &quot;TRUE&quot;] &lt;- &quot;Yes&quot;
+killing$Armed[killing$Armed == &quot;armed&quot;] &lt;- &quot;Armed&quot;
+killing$Armed[killing$Armed == &quot;unarmed&quot;] &lt;- &quot;Unarmed&quot;
+killing$Armed[killing$Armed == &quot;unknown&quot;] &lt;- &quot;Unknown&quot;
+killing$Armed[killing$Armed == &quot;undetermined&quot;] &lt;- &quot;Undetermined&quot;
+killing$Armed[killing$Armed == &quot;unknown weapon&quot;] &lt;- &quot;Unknown Weapon&quot;
+</code></pre>
+
+<p>Okay now we have all the data we need and it&rsquo;s in a decent user friendly format. We just need to join the data which details the deaths with the data detailing US cities and states. In the US there are some cities with the same name that are in different geographical location. We need to bear this in mind when joining the states data with the cities data.</p>
+
+<p>To compensate we need to use <code>paste</code> and <code>mutate</code> on the &lsquo;killing&rsquo; data to develop a new variable which shows the city name followed by the state name. This means when we join to the killing data to the cities data there wont be any confusion between cities that are named the same but are in different locations.</p>
+
+<pre><code>killing %&gt;%
+  mutate(city_state=paste(killing$City, killing$State, sep=&quot;, &quot;)) %&gt;%
+  select(Name, Date, `Manner of Death`, Age, Gender, Race, Armed, State,
+         City, Year, city_state, flee, body_camera, 
+         `Signs of mental illness`) -&gt; killing
+
+us_cities %&gt;%
+  mutate(city_state=paste(us_cities$City, 
+                          us_cities$state_name, sep=&quot;, &quot;)) -&gt; us_cities2
+                          
+</code></pre>
+
+<p>Now we can join the cities data which we&rsquo;ll use to get the latitude and longitude information to the data which details the deaths.</p>
+
+<pre><code>killing &lt;- dplyr::left_join(
+  x = killing,  # to this table...
+  y = us_cities2,   # ...join this table
+  by = &quot;city_state&quot;  # on this key
+) 
+</code></pre>
+
+<p>Okay great! Finally for this section we need to write the data to a csv.</p>
+
+<pre><code>write_csv(killing, &quot;Data/killing.csv&quot;)
+
+</code></pre>
+
+<h2 id="using-crosstalk">Using Crosstalk</h2>
+
+<p>Now we have our data in a nice, tidy format, and we have all the data we need to build the application using crosstalk!</p>
+
+<p>Alright. To do this we need to start developing the application in Rmd. If you&rsquo;ve not used <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> before then I would suggest having a read about that first before proceeding. RMarkdown is useful for developing reproducable documents in an array of formats. In this example we&rsquo;re using RMarkdown in conjunction with crosstalk to develop a html output.</p>
+
+<p>You don&rsquo;t need to know a lot of html to do this. I peronally don&rsquo;t know much html at all, but managed to get through by referencing other people&rsquo;s projects. In fact hopefully what I&rsquo;m detailing in this blog with be enough information!</p>
+
+<p>First we need to load some more libraries.</p>
+
+<pre><code>library(flexdashboard) - for creating the dashbaord
+library(dplyr) - data wrangling
+library(leaflet) - for mapping
+library(DT) - for developing interactive data tables
+library(crosstalk) - well, you guessed it, so we can use the crosstalk features
+library(RColorBrewer) - for nice comlour templates
+library(readr) - for reading data into and out of R
+library(ggplot2) - for generating plots
+
+</code></pre>
+
+<p>Let&rsquo;s have a closer look at the the banner at the head of the RMarkdown document. Here you can add the title of your application and set some preferences. Here I&rsquo;m using <a href="https://rmarkdown.rstudio.com/flexdashboard/">Flexdashboard</a> to develop a, well a dashboard! Again I would suggest having a read of the flexdashboard documentation if you want to know a bit more about that.</p>
+
+<p>I&rsquo;m using the &lsquo;cerulean&rsquo; theme here taken from <a href="https://bootswatch.com/">Bootswatch</a>. If you&rsquo;ve downloaded the project from Github then have a go at playing around with the themes and layouts using the &lsquo;01.crosstalk.Rmd&rsquo; document.</p>
+
+<pre><code>---
+title: &quot;Police Shootings in the United States: 2015 - 2018&quot;
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: cerulean
+---
+</code></pre>
+
+<p>Next we can load in the data that we developed in the &lsquo;Tidy the data&rsquo; section.</p>
+
+<pre><code>killing &lt;- read_csv(&quot;Data/killing.csv&quot;) #As developed in '00.tidydata.R'
+
+killing$Year &lt;- as.character(killing$Year)
+
+</code></pre>
+
+<p>Now comes quite an important step which is crucial to understand how crosstalk and flexdashboard work. We need to wrap the data frame we have developed and pass it to a Crosstalk-compatible widget where a data frame would normally be expected. After doing this, everytime we want to call the data to be utilised in the application we will use this wrapped data.</p>
+
+<pre><code>sd &lt;- SharedData$new(killing)
+</code></pre>
+
+<p>We&rsquo;re now going to asign a colour palette to the &lsquo;Race&rsquo; variable in the data. This means that each &lsquo;Race&rsquo; value will be assigned it&rsquo;s own colour. For this application I&rsquo;ve used the &lsquo;Spectral&rsquo; palette.</p>
+
+<pre><code>pal &lt;- colorFactor(
+  palette = 'Spectral',
+  domain = killing$Race
+)
+</code></pre>
+
+<p>Next we&rsquo;re going to use <code>leaflet</code> to develop a map. So far leaflet is my favourite library in R. Namely because I love playing around with maps! What&rsquo;s important to note here is that the <code>sd</code> data frame is referenced, rather than the csv file!</p>
+
+<pre><code>sd %&gt;% 
+  leaflet() %&gt;%
+  setView(lng = -100.94, lat = 38.94 , zoom = 3) %&gt;% 
+  addTiles() %&gt;%
+  addCircleMarkers(lng = ~lng, lat = ~lat, weight = 3, color = ~pal(Race),
+                   stroke = TRUE, fillOpacity = 0.5, 
+                   radius = ~ifelse(Race == &quot;White&quot;, 6, 10),
+                   popup = ~paste0(&quot;&lt;h5&gt;&quot;, killing$Name, &quot;&lt;/h5&gt;&quot;,
+                                   
+                                   
+                                   &quot;&lt;table style='width:100%'&gt;&quot;,
+                                   
+                                   &quot;&lt;tr&gt;&quot;,
+                                   &quot;&lt;tr&gt;&quot;,
+                                   &quot;&lt;th&gt;Date&lt;/th&gt;&quot;,
+                                   &quot;&lt;th&gt;&quot;, killing$Date, &quot;&lt;/th&gt;&quot;,
+                                   &quot;&lt;/tr&gt;&quot;,
+                                   
+                                   &quot;&lt;tr&gt;&quot;,
+                                   &quot;&lt;tr&gt;&quot;,
+                                   &quot;&lt;th&gt;Gender&lt;/th&gt;&quot;,
+                                   &quot;&lt;th&gt;&quot;, killing$Gender, &quot;&lt;/th&gt;&quot;,
+                                   &quot;&lt;/tr&gt;&quot;,
+                                   
+                                   &quot;&lt;tr&gt;&quot;,
+                                   &quot;&lt;tr&gt;&quot;,
+                                   &quot;&lt;th&gt;Age&lt;/th&gt;&quot;,
+                                   &quot;&lt;th&gt;&quot;, killing$Age, &quot;&lt;/th&gt;&quot;,
+                                   &quot;&lt;/tr&gt;&quot;,
+                                   
+                                   &quot;&lt;tr&gt;&quot;,
+                                   &quot;&lt;tr&gt;&quot;,
+                                   &quot;&lt;th&gt;Race&lt;/th&gt;&quot;,
+                                   &quot;&lt;th&gt;&quot;, killing$Race, &quot;&lt;/th&gt;&quot;,
+                                   &quot;&lt;/tr&gt;&quot;
+                   )) %&gt;%
+  addLegend(&quot;bottomleft&quot;, pal = pal, values = ~Race,
+            title = &quot;Race of victim&quot;,
+            labFormat = labelFormat(prefix = &quot;$&quot;),
+            opacity = 1
+  ) -&gt; map
+
+</code></pre>
+
+<p>Cool now we have a map to use in our application! As we&rsquo;re using leaflet here the map will be interactive. Next we&rsquo;re going to develop some charts to give some insight into the data we&rsquo;re using. The charts will be a static feature within the application.</p>
+
+<pre><code>
+# Proportion killed by state
+
+killing %&gt;%
+  dplyr::group_by(State) %&gt;%
+  #dplyr::filter(Year == &quot;2017&quot;) %&gt;%
+  dplyr::summarise(count = n()) %&gt;%
+  dplyr::mutate(proportion = count/sum(count)*100) %&gt;%
+  dplyr::filter(proportion &gt;= 2.5) %&gt;%
+  ggplot(aes(x = reorder(State, -proportion), y=proportion,
+                          label = (round(proportion,1)))) +
+  geom_col(position = &quot;dodge&quot;, fill=&quot;#FDAE61&quot;) +
+  geom_text(position = position_dodge(width = .9), vjust=-0.5)+
+  theme_classic()+
+  #ggtitle(&quot;Highest ranking states by proportion of total killed: 2017&quot;)+
+  xlab(&quot;State&quot;)+
+  ylab(&quot;Proportion&quot;) +
+  theme(text = element_text(size=18), 
+        axis.text.x = element_text(angle = 75, hjust = 1)) -&gt; states_chart
+
+
+killing %&gt;%
+  dplyr::group_by(Year, `Signs of mental illness`) %&gt;%
+  dplyr::summarise(count = n()) %&gt;%
+  dplyr::mutate(proportion = (count / sum(count)*100)) %&gt;% 
+  ggplot(aes(x = `Signs of mental illness`, y = proportion, fill = Year, label = (round(proportion,1))))+ 
+  geom_col(position = &quot;dodge&quot;) +
+  scale_fill_brewer(palette = &quot;Spectral&quot;, direction = -1)+
+  geom_text(position = position_dodge(width = .9), vjust=-0.5)+
+  theme_classic()+
+  theme(text = element_text(size=18))+
+  #ggtitle(&quot;Proption of fatalities showing signs of mental illness&quot;)+
+  xlab(&quot;Victim showed signs of mental illness&quot;)+
+  ylab(&quot;Proportion&quot;) -&gt; mental_health_ch
+
+#proportion by gender
+ 
+killing %&gt;%
+  dplyr::filter(!is.na(Gender)) %&gt;% #small proportion of unknown gender so take out
+  dplyr::group_by(Year, Gender) %&gt;%
+  dplyr::summarise(count = n() ) %&gt;%
+  dplyr::mutate(proportion = count / sum(count)*100) %&gt;% 
+  ggplot(aes(reorder(x = Gender, -proportion), y = proportion, fill = Year, label = (round(proportion,1))))+ 
+  geom_col(position = &quot;dodge&quot;) +
+  scale_fill_brewer(palette = &quot;Spectral&quot;, direction = -1)+
+  geom_text(position = position_dodge(width = .9), vjust=-0.5)+
+  theme_classic()+
+  theme(text = element_text(size=18))+
+  #ggtitle(&quot;Proption of fatalities by gender&quot;)+
+  xlab(&quot;Gender of victim&quot;)+
+  ylab(&quot;Proportion&quot;) -&gt; gen_chart
+
+#proportion by race
+
+killing %&gt;%
+  dplyr::group_by(Race) %&gt;%
+  dplyr::summarise(count = n() ) %&gt;%
+  dplyr::mutate(proportion = count / sum(count)*100) %&gt;% 
+  ggplot(aes(x=reorder(Race, -proportion), y=proportion, 
+                      label = (round(proportion, 1))))+
+  geom_col(position = &quot;dodge&quot;, fill=&quot;#ABDDA4&quot;) +
+  geom_text(position = position_dodge(width = .9), vjust=-0.5)+
+  theme_classic()+
+  theme(text = element_text(size=18))+
+  #ggtitle(&quot;Proption of fatalities by race/ethnicity&quot;)+
+  xlab(&quot;Ethnicity of victim&quot;)+
+  ylab(&quot;Proportion&quot;) -&gt; eth_ch
+
+</code></pre>
+
+<p>Finally we&rsquo;ll use &lsquo;DT&rsquo; to make an interacrtive data table. This will detail all of the data in killing.csv in the application. Having an interactive table in your application lets the user play around with and apply filters to the underlying data.</p>
+
+<pre><code>DT::datatable(
+  filter = &quot;top&quot;,
+  head(killing_dt, 3000), 
+  options = list(
+  columnDefs = list(list(className = 'dt-center', targets = c(2:5))),
+  pageLength = 100,
+  lengthMenu = c(100, 250, 500, 1000),
+  initComplete = JS(
+    &quot;function(settings, json) {&quot;,
+    &quot;$(this.api().table().header()).css({'background-color': '#FFFFE0', 'color': '#000'});&quot;,
+    &quot;}&quot;),
+  (searchHighlight = TRUE)
+)) -&gt; data_table
+</code></pre>
+
+<p>Okay now we have an interactive map which details where shootings took place, which can be filtered by race, gender, age and date. We also have some static graphs and an interactive table which shows the underlying data.</p>
+
+<p>Now we&rsquo;re going to take what we&rsquo;ve developed above and put it into an application.</p>
+
+<p>It&rsquo;s important that you have a think about how you want your application to look in terms of layout before you start developing it. How many pages do you want, and what content do you want on the pages? How do you want the pages to be laid out?</p>
+
+<p>Each page of your application is defined by the title of the page followed by a row of equal symbols, as below.</p>
+
+<pre><code>Overview
+=====================================
+</code></pre>
+
+<p>Once you&rsquo;ve decided the layout of your page you can define how wide you want the columns to be. For this application the map is pretty important, and looks better the more rectangular it is. So I&rsquo;ve chosen a width of 550 for the column on the left of the page. The total width of the page is 1000, so this leaves 450 for the column on the right side.</p>
+
+<pre><code>Column {data-width=550}
+-----------------------------------------------------------------------
+</code></pre>
+
+<p>You can then assign headings within your page.</p>
+
+<pre><code>### Map
+</code></pre>
+
+<p>And then call the map. When developing the map I assigned it to &lsquo;map&rsquo; so this is what I&rsquo;ll use to call it into the application. You also need to tell flexdashboard what kind of widget you&rsquo;re putting into the application. In this case I used <code>{r map}</code>.</p>
+
+<p>Okay great that&rsquo;s our map set up. Next we&rsquo;ll define the right hand colummn.</p>
+
+<pre><code>Column {data-width=450}
+-----------------------------------------------------------------------
+</code></pre>
+
+<p>On the right side of the application I want to apply some filters to interact with the map and to narrow down teh data to make it easier to interpret. if you&rsquo;ve used <a href="https://shiny.rstudio.com/">Shiny</a> before then this concept will be familiar, however crosstalk woks in static html documents.</p>
+
+<p>So for example if the user wants to look at shootings that occured in 2015, they can apply a filter to that effect, and the map will update to show shootings that occured on that date.</p>
+
+<p>For me, this is where crosstalk becomes really useful. There are lots of different filters that you can apply such as check boxes and sliders, and it&rsquo;s really quite simple to add interactivity into a dashboard as you&rsquo;ll see below.</p>
+
+<p>First let&rsquo;s give the section a title.</p>
+
+<pre><code>### Filters
+</code></pre>
+
+<p>We then need to define what the column is going to detail in r.</p>
+
+<pre><code>{r filters}
+</code></pre>
+
+<p>We can then use our <code>sd</code> dataframe, which is being used in the map to apply the filters. The first chunk of code here defines what kind of interactivity is required by using <code>filter_select</code>. The label id is set to &ldquo;Race&rdquo;, this is the title of the filter. The SharedData is then called by using <code>=sd</code>. Lastly the <code>sd</code> data frame is grouped by Race using <code>~Race</code>.</p>
+
+<pre><code>filter_select(
+  id = &quot;Race&quot;,
+  label = &quot;Race&quot;,
+  sharedData = sd,
+  group = ~Race
+)
+
+filter_select(
+  id = &quot;State&quot;,
+  label = &quot;State&quot;,
+  sharedData = sd,
+  group = ~State
+)
+
+bscols(
+  filter_checkbox(
+    id = &quot;Armed&quot;,
+    label = &quot;Armed&quot;,
+    sharedData = sd,
+    group = ~Armed
+  ),
+  filter_checkbox(
+    id = &quot;Year&quot;,
+    label = &quot;Year of incident&quot;,
+    sharedData = sd,
+    group = ~Year
+  ),
+  filter_checkbox(
+    id = &quot;Gender&quot;,
+    label = &quot;Gender&quot;,
+    sharedData = sd,
+    group = ~Gender
+  ), 
+   filter_checkbox(
+    id = &quot;flee&quot;,
+    label = &quot;Fleeing&quot;,
+    sharedData = sd,
+    group = ~`flee`
+  ))
+</code></pre>
+
+<p>Now the map and filters are set I&rsquo;m going to use the bottom right panel to add in a static chart. We&rsquo;ve already defined the width of the right panel, so we don&rsquo;t need to do this again.</p>
+
+<p>Define the title.</p>
+
+<pre><code>### Police shootings by state: 2015 - 2018
+</code></pre>
+
+<p>Set the height and width of the chart, and call the chart to the application.</p>
+
+<pre><code>{r fig.width=8, fig.height=6}
+
+states_chart
+
+</code></pre>
+
+<p>So that&rsquo;s it, we have our first page set out! You should be able to knit to flexdashboard and run the application.</p>
+
+<p>Just lastly I&rsquo;m going to highlight how to add the interactive table we created earlier using the <code>DT</code> package.</p>
+
+<p>Simply start a new page in the application within your RMarkdown document.</p>
+
+<pre><code>Data
+===================================== 
+</code></pre>
+
+<p>Now call the data table.</p>
+
+<pre><code>[r}
+data_table
+
+</code></pre>
+
+<p>So that&rsquo;s it, we have an up and running html application! In developing applications in R I started with Shiny and the had a go using crosstalk using flexdashboard. Personally I found flexdashboard easier to get to grips with than Shiny. For that reason I think it&rsquo;s good to start out using crosstalk, and then move onto trying Shiny.</p>
+
+<p>That said it is possible to use <a href="https://rstudio.github.io/crosstalk/shiny.html">Shiny within crosstalk!</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/crosstalk/">crosstalk</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/flexdashboard/">flexdashboard</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/leaflet/">leaflet</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/shiny/">shiny</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/sue-wallace/" data-tooltip="Sue Wallace">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/everlasting_ava%25!%28EXTRA%20string=/2019/07/fatal-force-with-cross-talk/%29">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2019/07/fatal-force-with-cross-talk/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Sue Wallace. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/sue-wallace/" data-tooltip="Sue Wallace">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/everlasting_ava%25!%28EXTRA%20string=/2019/07/fatal-force-with-cross-talk/%29">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2019/07/fatal-force-with-cross-talk/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/everlasting_ava%25!%28EXTRA%20string=%2F2019%2F07%2Ffatal-force-with-cross-talk%2F%29">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2019%2F07%2Ffatal-force-with-cross-talk%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/e652bbe868ed1c42c764ca8a7b07ce1e?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Sue Wallace</h4>
+    
+      <div id="about-card-bio">Senior Statistician|Data Science Enthusiast|Project Manager</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Senior Statistician
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        London, England
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/images/cover-v1.2.0.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2019\/07\/fatal-force-with-cross-talk\/';
+          
+            this.page.identifier = '\/2019\/07\/fatal-force-with-cross-talk\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
