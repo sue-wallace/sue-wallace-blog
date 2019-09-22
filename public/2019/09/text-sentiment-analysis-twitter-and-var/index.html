@@ -256,7 +256,7 @@ Note: Because of the nature of the tweets there are some swear words within the 
 
 <p>Yesterday Leicester City beat Spurs 2-1, but not before two VAR decisions, one being very controversial.</p>
 
-<p>After 37 minutes Spurs were up 1-0 with a unique goal scored by Harry Kane. In the second half Leicester had a really bright start until Aurier scored for Spurs at 63 minutes. Here&rsquo;s where things get a bit spicy! Auriers goal was disallowed by a VAR check which found Son to be 0.0000001 centimetres offside in the build-up to the goal.</p>
+<p>At 37 minutes Spurs were up 1-0 with a unique goal scored by Harry Kane. In the second half Leicester had a really bright start until Aurier scored for Spurs at 63 minutes. Here&rsquo;s where things get a bit spicy! Auriers goal was disallowed by a VAR check which found Son to be 0.0000001 centimetres offside in the build-up to the goal.</p>
 
 <p>2 minutes later a rejuvinated Leicester score the equaliser, and at 84 minutes Maddison scored the winning goal.</p>
 
@@ -268,7 +268,7 @@ Note: Because of the nature of the tweets there are some swear words within the 
 
 <p>VAR stands for Video Assistant Referee and is football&rsquo;s first use of video technology. It was used on the 2018 World Cup as well as the 2019 Women&rsquo;s World Cup. It was introduced to the Premier League at the start of the current 2019-20 season.</p>
 
-<p>The VAR team consists of three people situated in a central control room who have direct communication with the referee on the pitch. If the referee on the pitch makes a &lsquo;clear error&rsquo; in on awarding goals, penalties, red cards or though providing mistaken identity in awarding a card then VAR can be used to overturn the ruling.</p>
+<p>The VAR team consists of three people situated in a central control room who have direct communication with the referee on the pitch. If the referee on the pitch makes a &lsquo;clear error&rsquo; in awarding goals, penalties, red cards or though providing mistaken identity in awarding a card then VAR can be used to overturn the ruling.</p>
 
 <h1 id="analysis-of-var-on-twitter">Analysis of VAR on twitter</h1>
 
@@ -279,7 +279,7 @@ Note: Because of the nature of the tweets there are some swear words within the 
 
 <p>Set up a <a href="https://developer.twitter.com/en/dashboard">twitter</a> application so that you can connect R to Twitter. You&rsquo;ll need a twitter account in order to be able to do this.</p>
 
-<p>Remember when connecting R to Twitter and retreiving tweets that you are accessing information that twitter users have made public, however not ever twitter user will know that scraping technology exists. Because of this I think it&rsquo;s important to bear in mind the following statement from twitter regarding the use of twitter data:</p>
+<p>Remember when connecting R to Twitter and retreiving tweets that you are accessing information that twitter users have made public, however not every twitter user will know that scraping technology exists. Because of this I think it&rsquo;s important to bear in mind the following statement from twitter regarding the use of twitter data:</p>
 
 <p>&lsquo;Be careful about using Twitter data to derive or infer potentially sensitive
 characteristics about Twitter users (ie. health, political or religious
@@ -297,16 +297,16 @@ access_secret &lt;- &quot;your key&quot;
 setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
 </code></pre>
 
-<p>The foolowing line searches for tweets that have &lsquo;#VAR&rsquo; in them and takes the first 3,000 tweets in english.</p>
+<p>The following line searches for tweets that have &lsquo;#VAR&rsquo; in them and takes the first 3,000 tweets in english.</p>
 
 <pre><code>VAR_twitter &lt;- searchTwitter(&quot;#VAR&quot;,n=3000,lang=&quot;en&quot;)
 
 VAR_twitter_df &lt;- twListToDF(VAR_twitter) # Convert list to data frame
 </code></pre>
 
-<p>I&rsquo;m only interested in tweets with &lsquo;#VAR&rsquo; for the 22nd September to 23rd September, as I&rsquo;d like to limit the data to around the same time the Leicester match took place.</p>
+<p>I&rsquo;m only interested in tweets with &lsquo;#VAR&rsquo; for the 22nd September to 23rd September, as I&rsquo;d like to limit the data to around the same time the Leicester V Spurs match took place.</p>
 
-<p>Next I&rsquo;m going to use the <code>un_nest</code> function. This seperates the tweets into seperate words, instead of having a whole sentence.</p>
+<p>Next I&rsquo;m going to use the <code>un_nest</code> function. This seperates the tweets into seperate words, instead of having a whole sentence per row.</p>
 
 <pre><code>tweet_words &lt;- VAR_twitter_df %&gt;% select(id, text) %&gt;% unnest_tokens(word,text)
 </code></pre>
@@ -336,8 +336,6 @@ that aren&rsquo;t worth including as they wont give any sentiment value, like &r
 <h1 id="applying-sentiment-analysis">Applying sentiment analysis</h1>
 
 <p>I now have the data shaped in a tidy format and I&rsquo;ve taken out any words that wont benefit the analysis. Next I&rsquo;m going to assign sentiment to the words to define if the words are positive or negative. Note that applying sentiments to words in isolation like this isn&rsquo;t foolproof. For example the word &lsquo;wow&rsquo; appears in this data and is assigned a positive sentiment, however this kind of assignment doesn&rsquo;t take into account irony or sarcarm.</p>
-
-<p>So the sentiment could actually be negative: &lsquo;wow don&rsquo;t you just love VAR&rsquo;.</p>
 
 <p>There are a few different sentiment datasets, but here I&rsquo;m going to use &lsquo;bing&rsquo;.</p>
 
@@ -390,6 +388,8 @@ that aren&rsquo;t worth including as they wont give any sentiment value, like &r
 <p><img src="/img/Negative.jpeg" alt="Negative" /></p>
 
 <p>Here we can see that the word &lsquo;joke&rsquo; appears the most in the selected tweets, followed by &lsquo;fucking&rsquo; and &lsquo;ruining&rsquo;.</p>
+
+<p>Summary: Assigning sentiment to a single token is not a foolproof way of conducting sentiment analysis due to lack of context, however we can still infer from this analysis that people generally weren&rsquo;t very happy with VAR over the last couple of days!</p>
               
             </div>
           </div>

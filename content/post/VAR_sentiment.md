@@ -20,7 +20,7 @@ Note: Because of the nature of the tweets there are some swear words within the 
 
 Yesterday Leicester City beat Spurs 2-1, but not before two VAR decisions, one being very controversial. 
 
-After 37 minutes Spurs were up 1-0 with a unique goal scored by Harry Kane. In the second half Leicester had a really bright start until Aurier scored for Spurs at 63 minutes. Here's where things get a bit spicy! Auriers goal was disallowed by a VAR check which found Son to be 0.0000001 centimetres offside in the build-up to the goal.
+At 37 minutes Spurs were up 1-0 with a unique goal scored by Harry Kane. In the second half Leicester had a really bright start until Aurier scored for Spurs at 63 minutes. Here's where things get a bit spicy! Auriers goal was disallowed by a VAR check which found Son to be 0.0000001 centimetres offside in the build-up to the goal.
 
 2 minutes later a rejuvinated Leicester score the equaliser, and at 84 minutes Maddison scored the winning goal. 
 
@@ -32,7 +32,7 @@ I decided to do some sentiment analysis of twitter reactions to try and understa
 
 VAR stands for Video Assistant Referee and is football's first use of video technology. It was used on the 2018 World Cup as well as the 2019 Women's World Cup. It was introduced to the Premier League at the start of the current 2019-20 season. 
 
-The VAR team consists of three people situated in a central control room who have direct communication with the referee on the pitch. If the referee on the pitch makes a 'clear error' in on awarding goals, penalties, red cards or though providing mistaken identity in awarding a card then VAR can be used to overturn the ruling. 
+The VAR team consists of three people situated in a central control room who have direct communication with the referee on the pitch. If the referee on the pitch makes a 'clear error' in awarding goals, penalties, red cards or though providing mistaken identity in awarding a card then VAR can be used to overturn the ruling. 
 
 # Analysis of VAR on twitter 
 
@@ -44,7 +44,7 @@ dplyr, twitteR, tidytext, ggplot2
 
 Set up a [twitter](https://developer.twitter.com/en/dashboard) application so that you can connect R to Twitter. You'll need a twitter account in order to be able to do this. 
 
-Remember when connecting R to Twitter and retreiving tweets that you are accessing information that twitter users have made public, however not ever twitter user will know that scraping technology exists. Because of this I think it's important to bear in mind the following statement from twitter regarding the use of twitter data:
+Remember when connecting R to Twitter and retreiving tweets that you are accessing information that twitter users have made public, however not every twitter user will know that scraping technology exists. Because of this I think it's important to bear in mind the following statement from twitter regarding the use of twitter data:
 
 'Be careful about using Twitter data to derive or infer potentially sensitive 
 characteristics about Twitter users (ie. health, political or religious
@@ -63,16 +63,16 @@ access_secret <- "your key"
 setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
 ```
 
-The foolowing line searches for tweets that have '#VAR' in them and takes the first 3,000 tweets in english.
+The following line searches for tweets that have '#VAR' in them and takes the first 3,000 tweets in english.
 
 ```
 VAR_twitter <- searchTwitter("#VAR",n=3000,lang="en")
 
 VAR_twitter_df <- twListToDF(VAR_twitter) # Convert list to data frame
 ```
-I'm only interested in tweets with '#VAR' for the 22nd September to 23rd September, as I'd like to limit the data to around the same time the Leicester match took place.
+I'm only interested in tweets with '#VAR' for the 22nd September to 23rd September, as I'd like to limit the data to around the same time the Leicester V Spurs match took place.
 
-Next I'm going to use the `un_nest` function. This seperates the tweets into seperate words, instead of having a whole sentence. 
+Next I'm going to use the `un_nest` function. This seperates the tweets into seperate words, instead of having a whole sentence per row. 
 
 ```
 tweet_words <- VAR_twitter_df %>% select(id, text) %>% unnest_tokens(word,text)
@@ -105,8 +105,6 @@ tweet_words <- tweet_words %>% anti_join(my_stop_words)
 # Applying sentiment analysis
 
 I now have the data shaped in a tidy format and I've taken out any words that wont benefit the analysis. Next I'm going to assign sentiment to the words to define if the words are positive or negative. Note that applying sentiments to words in isolation like this isn't foolproof. For example the word 'wow' appears in this data and is assigned a positive sentiment, however this kind of assignment doesn't take into account irony or sarcarm. 
-
-So the sentiment could actually be negative: 'wow don't you just love VAR'. 
 
 There are a few different sentiment datasets, but here I'm going to use 'bing'.
 
@@ -160,4 +158,6 @@ bing %>%
 ![Negative](/img/Negative.jpeg)
 
 Here we can see that the word 'joke' appears the most in the selected tweets, followed by 'fucking' and 'ruining'. 
+
+Summary: Assigning sentiment to a single token is not a foolproof way of conducting sentiment analysis due to lack of context, however we can still infer from this analysis that people generally weren't very happy with VAR over the last couple of days!
 
