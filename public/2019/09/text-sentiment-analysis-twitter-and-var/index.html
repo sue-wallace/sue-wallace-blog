@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.56.0 with theme Tranquilpeak 0.4.6-BETA">
+<meta name="author" content="Sue Wallace">
+<meta name="keywords" content="">
+<meta name="description" content="Detailing sentiment analysis on how VAR is portrayed on Twitter
+
+Note: Because of the nature of the tweets there are some swear words within the charts. If you really don&rsquo;t like seeing that sort of thing then this blog post might not be for you!">
+
+
+<meta property="og:description" content="Detailing sentiment analysis on how VAR is portrayed on Twitter
+
+Note: Because of the nature of the tweets there are some swear words within the charts. If you really don&rsquo;t like seeing that sort of thing then this blog post might not be for you!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Text sentiment analysis - Twitter and VAR">
+<meta name="twitter:title" content="Text sentiment analysis - Twitter and VAR">
+<meta property="og:url" content="/2019/09/text-sentiment-analysis-twitter-and-var/">
+<meta property="twitter:url" content="/2019/09/text-sentiment-analysis-twitter-and-var/">
+<meta property="og:site_name" content="Hugo tranquilpeak theme">
+<meta property="og:description" content="Detailing sentiment analysis on how VAR is portrayed on Twitter
+
+Note: Because of the nature of the tweets there are some swear words within the charts. If you really don&rsquo;t like seeing that sort of thing then this blog post might not be for you!">
+<meta name="twitter:description" content="Detailing sentiment analysis on how VAR is portrayed on Twitter
+
+Note: Because of the nature of the tweets there are some swear words within the charts. If you really don&rsquo;t like seeing that sort of thing then this blog post might not be for you!">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2019-09-14T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-09-14T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="tidytext">
+    
+      <meta property="article:section" content="sentiment">
+    
+  
+  
+    
+      <meta property="article:tag" content="tidytext">
+    
+      <meta property="article:tag" content="twitter">
+    
+      <meta property="article:tag" content="sentiment analysis">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="/img/serge.jpg">
+  <meta property="twitter:image" content="/img/serge.jpg">
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/e652bbe868ed1c42c764ca8a7b07ce1e?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/e652bbe868ed1c42c764ca8a7b07ce1e?s=640">
+
+
+    <title>Text sentiment analysis - Twitter and VAR</title>
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="/2019/09/text-sentiment-analysis-twitter-and-var/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Hugo tranquilpeak theme</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/e652bbe868ed1c42c764ca8a7b07ce1e?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/e652bbe868ed1c42c764ca8a7b07ce1e?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Sue Wallace</h4>
+        
+          <h5 class="sidebar-profile-bio">Senior Statistician|Data Science Enthusiast|Project Manager</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/sue-wallace">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Text sentiment analysis - Twitter and VAR
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-09-14T00:00:00Z">
+        
+  September 14, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/tidytext">tidytext</a>, 
+    
+      <a class="category-link" href="/categories/sentiment">sentiment</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Detailing sentiment analysis on how VAR is portrayed on Twitter</p>
+
+<p>Note: Because of the nature of the tweets there are some swear words within the charts. If you really don&rsquo;t like seeing that sort of thing then this blog post might not be for you!</p>
+
+<p>Yesterday Leicester City beat Spurs 2-1, but not before two VAR decisions, one being very controversial.</p>
+
+<p>After 37 minutes Spurs were up 1-0 with a unique goal scored by Harry Kane. In the second half Leicester had a really bright start until Aurier scored for Spurs at 63 minutes. Here&rsquo;s where things get a bit spicy! Auriers goal was disallowed by a VAR check which found Son to be 0.0000001 centimetres offside in the build-up to the goal.</p>
+
+<p>2 minutes later a rejuvinated Leicester score the equaliser, and at 84 minutes Maddison scored the winning goal.</p>
+
+<p><img src="/img/maddison.jpg" alt="maddison" /></p>
+
+<p>I decided to do some sentiment analysis of twitter reactions to try and understand how the VAR decision in the Leicester V Spurs match was receieved.</p>
+
+<h1 id="what-s-var">What&rsquo;s VAR?</h1>
+
+<p>VAR stands for Video Assistant Referee and is football&rsquo;s first use of video technology. It was used on the 2018 World Cup as well as the 2019 Women&rsquo;s World Cup. It was introduced to the Premier League at the start of the current 2019-20 season.</p>
+
+<p>The VAR team consists of three people situated in a central control room who have direct communication with the referee on the pitch. If the referee on the pitch makes a &lsquo;clear error&rsquo; in on awarding goals, penalties, red cards or though providing mistaken identity in awarding a card then VAR can be used to overturn the ruling.</p>
+
+<h1 id="analysis-of-var-on-twitter">Analysis of VAR on twitter</h1>
+
+<p>First load the following libaries:</p>
+
+<pre><code>dplyr, twitteR, tidytext, ggplot2
+</code></pre>
+
+<p>Set up a <a href="https://developer.twitter.com/en/dashboard">twitter</a> application so that you can connect R to Twitter. You&rsquo;ll need a twitter account in order to be able to do this.</p>
+
+<p>Remember when connecting R to Twitter and retreiving tweets that you are accessing information that twitter users have made public, however not ever twitter user will know that scraping technology exists. Because of this I think it&rsquo;s important to bear in mind the following statement from twitter regarding the use of twitter data:</p>
+
+<p>&lsquo;Be careful about using Twitter data to derive or infer potentially sensitive
+characteristics about Twitter users (ie. health, political or religious
+affiliation, ethnic origin, sexual orientation, and more)&lsquo;.</p>
+
+<h1 id="using-twitter">Using twitteR</h1>
+
+<p>Keys can be accessed by going into the twitter app and then selecting &lsquo;keys and tokens&rsquo;.</p>
+
+<pre><code>consumer_key &lt;- &quot;your key&quot;
+consumer_secret &lt;- &quot;your key&quot;
+access_token &lt;- &quot;your key&quot;
+access_secret &lt;- &quot;your key&quot;
+
+setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
+</code></pre>
+
+<p>The foolowing line searches for tweets that have &lsquo;#VAR&rsquo; in them and takes the first 3,000 tweets in english.</p>
+
+<pre><code>VAR_twitter &lt;- searchTwitter(&quot;#VAR&quot;,n=3000,lang=&quot;en&quot;)
+
+VAR_twitter_df &lt;- twListToDF(VAR_twitter) # Convert list to data frame
+</code></pre>
+
+<p>I&rsquo;m only interested in tweets with &lsquo;#VAR&rsquo; for the 22nd September to 23rd September, as I&rsquo;d like to limit the data to around the same time the Leicester match took place.</p>
+
+<p>Next I&rsquo;m going to use the <code>un_nest</code> function. This seperates the tweets into seperate words, instead of having a whole sentence.</p>
+
+<pre><code>tweet_words &lt;- VAR_twitter_df %&gt;% select(id, text) %&gt;% unnest_tokens(word,text)
+</code></pre>
+
+<p>I want to take some stop words out of my data set so that words that don&rsquo;t add any value to the sentiment analysis like &lsquo;the&rsquo; and &lsquo;is&rsquo; are excluded.</p>
+
+<pre><code>data(stop_words)
+
+tweet_words &lt;- tweet_words %&gt;%
+  anti_join(stop_words)
+</code></pre>
+
+<p>There are some stop words that I think are unique to this subject
+that aren&rsquo;t worth including as they wont give any sentiment value, like &rsquo;t.co&rsquo; so I&rsquo;m going to add these words to the stop words data.</p>
+
+<pre><code>my_stop_words &lt;- stop_words %&gt;% 
+  select(-lexicon) %&gt;% 
+  bind_rows(data.frame(word = c(&quot;https&quot;, &quot;t.co&quot;, &quot;rt&quot;, &quot;i'm&quot;,&quot;isn't&quot;, &quot;var&quot;, 
+                                &quot;it's&quot;, &quot;2&quot;, &quot;1&quot;, &quot;0&quot;, &quot;i'm&quot;, &quot;don't&quot;)))
+</code></pre>
+
+<p>Now I can apply these additional stop words to my data.</p>
+
+<pre><code>tweet_words &lt;- tweet_words %&gt;% anti_join(my_stop_words)
+</code></pre>
+
+<h1 id="applying-sentiment-analysis">Applying sentiment analysis</h1>
+
+<p>I now have the data shaped in a tidy format and I&rsquo;ve taken out any words that wont benefit the analysis. Next I&rsquo;m going to assign sentiment to the words to define if the words are positive or negative. Note that applying sentiments to words in isolation like this isn&rsquo;t foolproof. For example the word &lsquo;wow&rsquo; appears in this data and is assigned a positive sentiment, however this kind of assignment doesn&rsquo;t take into account irony or sarcarm.</p>
+
+<p>So the sentiment could actually be negative: &lsquo;wow don&rsquo;t you just love VAR&rsquo;.</p>
+
+<p>There are a few different sentiment datasets, but here I&rsquo;m going to use &lsquo;bing&rsquo;.</p>
+
+<pre><code>bing &lt;- bind_rows(tweet_words %&gt;% 
+                            inner_join(get_sentiments(&quot;bing&quot;)) %&gt;%# join to bing data
+                            mutate(method = &quot;Bing et al.&quot;)) %&gt;% 
+  group_by(word, sentiment) %&gt;% 
+  summarise(n = n())
+</code></pre>
+
+<p>Now I have assigned sentiment to each word in the data I can develop a couple of plots to understand how people feel about VAR.</p>
+
+<p>Firstly let&rsquo;s look at the spread of negative comments against positive comments.</p>
+
+<pre><code>bing %&gt;%
+  group_by(sentiment) %&gt;% 
+  summarise(n = n()) %&gt;%
+  mutate(freq = (round(n/sum(n)*100))) %&gt;% 
+  ggplot(aes(x = sentiment, y=freq,
+             label = (round(freq,1)))) + 
+  geom_col(position = &quot;dodge&quot;, fill=&quot;#FDAE61&quot;) +
+  geom_text(position = position_dodge(width = .9), vjust=-0.5)+
+  theme_classic()+
+  #ggtitle(&quot;Highest ranking states by proportion of total killed: 2017&quot;)+
+  xlab(&quot;Sentiment&quot;)+
+  ylab(&quot;Proportion&quot;) +
+  theme(text = element_text(size=15), 
+        axis.text.x = element_text(angle = 75, hjust = 1)) 
+</code></pre>
+
+<p><img src="/img/negpos.jpeg" alt="negpos" /></p>
+
+<p>The chart shows that 65% of the words have been assigned a negative sentiment. Let&rsquo;s have a closer look at those negative words to get an idea of the kind of things people were saying about VAR over the last few days!</p>
+
+<pre><code>bing %&gt;% 
+  filter(n &gt;= 20) %&gt;% # words appears more than 20 times
+  filter(sentiment == &quot;negative&quot;) %&gt;% 
+  ggplot(aes(x = reorder(word, -n), y=n,
+             label = (round(n,1)))) +
+  geom_col(position = &quot;dodge&quot;, fill=&quot;#4d52e8&quot;) +
+  geom_text(position = position_dodge(width = .9), vjust=-0.5)+
+  theme_classic()+
+  #ggtitle(&quot;Highest ranking states by proportion of total killed: 2017&quot;)+
+  xlab(&quot;word&quot;)+
+  ylab(&quot;&quot;) +
+  theme(text = element_text(size=18), 
+        axis.text.x = element_text(angle = 75, hjust = 1)) 
+</code></pre>
+
+<p><img src="/img/Negative.jpeg" alt="Negative" /></p>
+
+<p>Here we can see that the word &lsquo;joke&rsquo; appears the most in the selected tweets, followed by &lsquo;fucking&rsquo; and &lsquo;ruining&rsquo;.</p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/tidytext/">tidytext</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/twitter/">twitter</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/sentiment-analysis/">sentiment analysis</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav style="visibility: hidden">
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/sue-wallace/" data-tooltip="Sue Wallace">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/07/fatal-force-with-cross-talk/" data-tooltip="Fatal Force with Cross Talk">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/everlasting_ava%25!%28EXTRA%20string=/2019/09/text-sentiment-analysis-twitter-and-var/%29">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2019/09/text-sentiment-analysis-twitter-and-var/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Sue Wallace. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav style="visibility: hidden">
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/sue-wallace/" data-tooltip="Sue Wallace">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/07/fatal-force-with-cross-talk/" data-tooltip="Fatal Force with Cross Talk">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/everlasting_ava%25!%28EXTRA%20string=/2019/09/text-sentiment-analysis-twitter-and-var/%29">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2019/09/text-sentiment-analysis-twitter-and-var/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/everlasting_ava%25!%28EXTRA%20string=%2F2019%2F09%2Ftext-sentiment-analysis-twitter-and-var%2F%29">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2019%2F09%2Ftext-sentiment-analysis-twitter-and-var%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/e652bbe868ed1c42c764ca8a7b07ce1e?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Sue Wallace</h4>
+    
+      <div id="about-card-bio">Senior Statistician|Data Science Enthusiast|Project Manager</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Senior Statistician
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        London, England
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/images/cover-v1.2.0.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2019\/09\/text-sentiment-analysis-twitter-and-var\/';
+          
+            this.page.identifier = '\/2019\/09\/text-sentiment-analysis-twitter-and-var\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

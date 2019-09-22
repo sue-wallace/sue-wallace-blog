@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Hugo tranquilpeak theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Sep 2019 21:13:14 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 15 Sep 2019 21:13:14 -0500</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,11 +14,22 @@
     <item>
       <title>Sue Wallace</title>
       <link>/2019/09/sue-wallace/</link>
-      <pubDate>Tue, 10 Sep 2019 21:13:14 -0500</pubDate>
+      <pubDate>Sun, 15 Sep 2019 21:13:14 -0500</pubDate>
       
       <guid>/2019/09/sue-wallace/</guid>
       <description>I’m a Senior Statistician with 5 years of experience working as an analyst in the charity and public sector.
 I’m a keen data scientist and sociologist, so this blog is kind of about that. I’m mostly using R.</description>
+    </item>
+    
+    <item>
+      <title>Text sentiment analysis - Twitter and VAR</title>
+      <link>/2019/09/text-sentiment-analysis-twitter-and-var/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/09/text-sentiment-analysis-twitter-and-var/</guid>
+      <description>&lt;p&gt;Detailing sentiment analysis on how VAR is portrayed on Twitter&lt;/p&gt;
+
+&lt;p&gt;Note: Because of the nature of the tweets there are some swear words within the charts. If you really don&amp;rsquo;t like seeing that sort of thing then this blog post might not be for you!&lt;/p&gt;</description>
     </item>
     
     <item>
